@@ -2,10 +2,10 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ServiceCard } from "@/components/ServiceCard";
-import { getServiceBySlug, services } from "@/data/services";
+import { getServiceBySlug, services, type Service } from "@/data/services";
 
 export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { service: Service } => {
     const service = getServiceBySlug(params.slug);
     if (!service) throw notFound();
     return { service };
