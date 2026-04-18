@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, ChevronDown, Activity } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { services, categories } from "@/data/services";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { to: "/" as const, label: "Home" },
@@ -17,13 +18,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[var(--shadow-soft)] transition-transform group-hover:scale-105">
-            <Activity className="h-5 w-5" />
-          </span>
-          <span className="font-heading text-lg font-bold tracking-tight text-foreground">
-            Bone <span className="text-primary">Physiotherapy</span>
-          </span>
+        <Link to="/" className="flex items-center group" aria-label="Bone Physiotherapy Clinic">
+          <img
+            src={logo}
+            alt="Bone Physiotherapy Clinic logo"
+            className="h-12 w-auto transition-transform group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop nav */}
