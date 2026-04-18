@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -19,6 +20,18 @@
  */
 
 @theme inline {
+  --font-heading: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-medical-light: var(--medical-light);
+  --color-medical-soft: var(--medical-soft);
+  --color-medical-deep: var(--medical-deep);
+  --color-accent-teal: var(--accent-teal);
+  --shadow-elegant: 0 20px 50px -20px color-mix(in oklab, var(--primary) 35%, transparent);
+  --shadow-soft: 0 10px 30px -15px color-mix(in oklab, var(--primary) 20%, transparent);
+  --gradient-hero: linear-gradient(135deg, color-mix(in oklab, var(--primary) 95%, black) 0%, color-mix(in oklab, var(--accent-teal) 80%, var(--primary)) 100%);
+  --gradient-overlay: linear-gradient(90deg, oklch(0.15 0.05 230 / 0.85) 0%, oklch(0.15 0.05 230 / 0.55) 50%, oklch(0.15 0.05 230 / 0.15) 100%);
+  --gradient-card: linear-gradient(180deg, var(--card) 0%, color-mix(in oklab, var(--medical-light) 60%, var(--card)) 100%);
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,21 +75,25 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.875rem;
+  --background: oklch(0.99 0.005 230);
+  --foreground: oklch(0.18 0.04 230);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.18 0.04 230);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.18 0.04 230);
+  --primary: oklch(0.52 0.14 230);
+  --primary-foreground: oklch(0.99 0.005 230);
+  --secondary: oklch(0.96 0.015 220);
+  --secondary-foreground: oklch(0.25 0.05 230);
+  --muted: oklch(0.96 0.012 220);
+  --muted-foreground: oklch(0.48 0.03 230);
+  --accent: oklch(0.92 0.05 200);
+  --accent-foreground: oklch(0.25 0.05 230);
+  --medical-light: oklch(0.97 0.018 210);
+  --medical-soft: oklch(0.93 0.04 205);
+  --medical-deep: oklch(0.32 0.09 230);
+  --accent-teal: oklch(0.68 0.13 195);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
@@ -140,5 +157,34 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ken-burns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-ken-burns {
+  animation: ken-burns 8s ease-in-out infinite alternate;
 }
