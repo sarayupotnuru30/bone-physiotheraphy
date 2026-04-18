@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { Activity, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { services } from "@/data/services";
+import logo from "@/assets/logo.png";
 
 export function Footer() {
   return (
@@ -8,13 +9,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-4">
           <div>
-            <Link to="/" className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <Activity className="h-5 w-5" />
-              </span>
-              <span className="font-heading text-lg font-bold text-foreground">
-                Bone <span className="text-primary">Physiotherapy</span>
-              </span>
+            <Link to="/" className="flex items-center" aria-label="Bone Physiotherapy Clinic">
+              <img src={logo} alt="Bone Physiotherapy Clinic logo" className="h-14 w-auto" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Restoring movement, relieving pain, and helping you live better with expert physiotherapy and orthopaedic care.
