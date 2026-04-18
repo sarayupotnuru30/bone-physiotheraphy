@@ -43,9 +43,19 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-sm font-semibold text-foreground">Contact</h4>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /> Hyderabad, India</li>
-              <li className="flex items-start gap-2"><Phone className="mt-0.5 h-4 w-4 text-primary" /> +91 93903 70782</li>
-              <li className="flex items-start gap-2"><Mail className="mt-0.5 h-4 w-4 text-primary" /> care@bonephysio.in</li>
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <span>Beside Lucid Diagnostics, Plot No: 26-113, Balram Nagar, Safilguda, Secunderabad – 500047</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <a href="tel:+919390370782" className="hover:text-primary">+91 93903 70782</a>
+              </li>
+              <li className="flex items-start gap-2">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                <a href="mailto:bonephysiotherapy@gmail.com" className="hover:text-primary break-all">bonephysiotherapy@gmail.com</a>
+              </li>
+              <li className="pt-1 text-xs">Mon – Sat: 9:30 AM – 8:30 PM</li>
             </ul>
           </div>
         </div>
