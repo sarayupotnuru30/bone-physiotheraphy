@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import logo from "@/assets/logo.png";
@@ -32,7 +32,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               {services.slice(0, 5).map((s) => (
                 <li key={s.slug}>
-                  <Link to="/services/$slug" params={{ slug: s.slug }} className="text-muted-foreground hover:text-primary">
+                  <Link to={`/services/${s.slug}`} className="text-muted-foreground hover:text-primary">
                     {s.title}
                   </Link>
                 </li>

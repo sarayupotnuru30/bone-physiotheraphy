@@ -1,12 +1,11 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/data/services";
 
 export function ServiceCard({ service, index = 0 }: { service: Service; index?: number }) {
   return (
     <Link
-      to="/services/$slug"
-      params={{ slug: service.slug }}
+      to={`/services/${service.slug}`}
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-[var(--shadow-soft)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)] animate-fade-in-up"
       style={{ animationDelay: `${index * 60}ms` }}
     >

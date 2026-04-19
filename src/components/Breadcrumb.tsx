@@ -1,7 +1,7 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
-export type Crumb = { label: string; to?: string; params?: Record<string, string> };
+export type Crumb = { label: string; to?: string };
 
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
@@ -12,11 +12,7 @@ export function Breadcrumb({ items }: { items: Crumb[] }) {
           return (
             <li key={i} className="flex items-center gap-1.5">
               {item.to && !last ? (
-                <Link
-                  to={item.to as "/"}
-                  params={item.params as never}
-                  className="transition-colors hover:text-primary"
-                >
+                <Link to={item.to} className="transition-colors hover:text-primary">
                   {item.label}
                 </Link>
               ) : (
