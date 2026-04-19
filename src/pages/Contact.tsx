@@ -1,20 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Bone Physiotherapy" },
-      { name: "description", content: "Book your physiotherapy consultation in Secunderabad. Reach us by phone, email, or WhatsApp." },
-      { property: "og:title", content: "Contact — Bone Physiotherapy" },
-      { property: "og:description", content: "Book a consultation and start your recovery journey today." },
-    ],
-  }),
-  component: ContactPage,
-});
 
 const WHATSAPP_NUMBER = "919390370782";
 
@@ -46,31 +33,17 @@ const formSchema = z.object({
 });
 
 const CONTACT_CARDS = [
-  {
-    icon: Phone,
-    label: "Call Us",
-    value: "9390370782",
-    href: "tel:+919390370782",
-  },
-  {
-    icon: Mail,
-    label: "Email Us",
-    value: "bonephysiotherapy@gmail.com",
-    href: "mailto:bonephysiotherapy@gmail.com",
-  },
-  {
-    icon: MapPin,
-    label: "Visit Us",
-    value: "Beside Lucid Diagnostics, Plot No: 26-113, Balram Nagar, Safilguda, Secunderabad – 500047",
-  },
-  {
-    icon: Clock,
-    label: "Working Hours",
-    value: "Mon – Sat: 9:30 AM – 8:30 PM",
-  },
-];
+  { icon: Phone, label: "Call Us", value: "9390370782", href: "tel:+919390370782" },
+  { icon: Mail, label: "Email Us", value: "bonephysiotherapy@gmail.com", href: "mailto:bonephysiotherapy@gmail.com" },
+  { icon: MapPin, label: "Visit Us", value: "Beside Lucid Diagnostics, Plot No: 26-113, Balram Nagar, Safilguda, Secunderabad – 500047" },
+  { icon: Clock, label: "Working Hours", value: "Mon – Sat: 9:30 AM – 8:30 PM" },
+] as const;
 
-function ContactPage() {
+export default function ContactPage() {
+  useEffect(() => {
+    document.title = "Contact — Bone Physiotherapy";
+  }, []);
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -120,7 +93,6 @@ function ContactPage() {
           </p>
         </div>
 
-        {/* Contact info cards */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {CONTACT_CARDS.map((c) => {
             const content = (
@@ -134,7 +106,7 @@ function ContactPage() {
             );
             const className =
               "group rounded-2xl border border-border bg-card p-6 text-center shadow-[var(--shadow-soft)] transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-elegant)]";
-            return c.href ? (
+            return "href" in c && c.href ? (
               <a key={c.label} href={c.href} className={className}>
                 {content}
               </a>
@@ -146,7 +118,6 @@ function ContactPage() {
           })}
         </div>
 
-        {/* Appointment form + WhatsApp */}
         <div className="mt-14 grid gap-8 lg:grid-cols-5">
           <div className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] md:p-8 lg:col-span-3">
             <h2 className="font-heading text-2xl font-bold text-foreground md:text-3xl">Book an Appointment</h2>

@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { services, categories } from "@/data/services";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
-  { to: "/" as const, label: "Home" },
-  { to: "/about" as const, label: "About" },
-  { to: "/contact" as const, label: "Contact" },
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -28,13 +28,15 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
-          <Link
+          <NavLink
             to="/"
-            activeOptions={{ exact: true }}
-            className="rounded-md px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary [&.active]:text-primary"
+            end
+            className={({ isActive }) =>
+              `rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${isActive ? "text-primary" : "text-foreground/80"}`
+            }
           >
             Home
-          </Link>
+          </NavLink>
 
           {/* Services dropdown */}
           <div
@@ -42,13 +44,15 @@ export function Navbar() {
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
-            <Link
+            <NavLink
               to="/services"
-              className="flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary [&.active]:text-primary"
+              className={({ isActive }) =>
+                `flex items-center gap-1 rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${isActive ? "text-primary" : "text-foreground/80"}`
+              }
             >
               Services
               <ChevronDown className="h-4 w-4 transition-transform" style={{ transform: servicesOpen ? "rotate(180deg)" : undefined }} />
-            </Link>
+            </NavLink>
             <div
               className={cn(
                 "absolute left-1/2 top-full -translate-x-1/2 pt-2 transition-all duration-200",
@@ -66,8 +70,7 @@ export function Navbar() {
                       .map((s) => (
                         <Link
                           key={s.slug}
-                          to="/services/$slug"
-                          params={{ slug: s.slug }}
+                          to={`/services/${s.slug}`}
                           className="block rounded-md px-3 py-2 text-sm text-foreground/85 transition-colors hover:bg-medical-light hover:text-primary"
                         >
                           {s.title}
@@ -79,18 +82,22 @@ export function Navbar() {
             </div>
           </div>
 
-          <Link
+          <NavLink
             to="/about"
-            className="rounded-md px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary [&.active]:text-primary"
+            className={({ isActive }) =>
+              `rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${isActive ? "text-primary" : "text-foreground/80"}`
+            }
           >
             About
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/contact"
-            className="rounded-md px-4 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-primary [&.active]:text-primary"
+            className={({ isActive }) =>
+              `rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary ${isActive ? "text-primary" : "text-foreground/80"}`
+            }
           >
             Contact
-          </Link>
+          </NavLink>
 
           <Link
             to="/contact"
@@ -147,8 +154,7 @@ export function Navbar() {
                       .map((s) => (
                         <Link
                           key={s.slug}
-                          to="/services/$slug"
-                          params={{ slug: s.slug }}
+                          to={`/services/${s.slug}`}
                           onClick={() => setOpen(false)}
                           className="block rounded-md px-3 py-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary"
                         >

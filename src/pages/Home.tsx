@@ -1,27 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { ServiceCard } from "@/components/ServiceCard";
 import { services } from "@/data/services";
 import { ArrowRight, ShieldCheck, HeartPulse, Sparkles, Users } from "lucide-react";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Bone Physiotherapy — Restore Movement, Relieve Pain" },
-      {
-        name: "description",
-        content:
-          "Expert physiotherapy and orthopaedic care for orthopaedic, neurological, sports, and elderly wellness conditions.",
-      },
-      { property: "og:title", content: "Bone Physiotherapy — Restore Movement, Relieve Pain" },
-      {
-        property: "og:description",
-        content: "Advanced physiotherapy and orthopaedic care for a pain-free, active life.",
-      },
-    ],
-  }),
-  component: HomePage,
-});
 
 const whyUs = [
   { icon: ShieldCheck, title: "Experienced Specialists", desc: "Certified clinicians with deep clinical expertise." },
@@ -30,7 +12,11 @@ const whyUs = [
   { icon: Users, title: "Patient-First Approach", desc: "Your comfort and recovery are our top priority." },
 ];
 
-function HomePage() {
+export default function HomePage() {
+  useEffect(() => {
+    document.title = "Bone Physiotherapy — Restore Movement, Relieve Pain";
+  }, []);
+
   const featured = services.filter((s) =>
     ["fractures-bone-injuries", "stroke-recovery", "ligament-injuries", "arthritis-care"].includes(s.slug),
   );
@@ -39,7 +25,6 @@ function HomePage() {
     <>
       <HeroCarousel />
 
-      {/* Services preview */}
       <section className="py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -71,7 +56,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Why us */}
       <section className="bg-medical-light py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -100,7 +84,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-[image:var(--gradient-hero)] p-10 text-center text-white shadow-[var(--shadow-elegant)] md:p-14">

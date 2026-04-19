@@ -1,30 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { ServiceCard } from "@/components/ServiceCard";
 import { categories, services } from "@/data/services";
 
-export const Route = createFileRoute("/services/")({
-  head: () => ({
-    meta: [
-      { title: "Our Services — Bone Physiotherapy" },
-      {
-        name: "description",
-        content:
-          "Comprehensive physiotherapy services across orthopaedic, neurological, sports, and elderly wellness care.",
-      },
-      { property: "og:title", content: "Our Services — Bone Physiotherapy" },
-      {
-        property: "og:description",
-        content: "Expert care across orthopaedics, neurology, sports medicine, and wellness.",
-      },
-    ],
-  }),
-  component: ServicesPage,
-});
+export default function ServicesPage() {
+  useEffect(() => {
+    document.title = "Our Services — Bone Physiotherapy";
+  }, []);
 
-function ServicesPage() {
   return (
     <>
-      {/* Hero */}
       <section className="bg-medical-light py-20 sm:py-24">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -39,7 +23,6 @@ function ServicesPage() {
         </div>
       </section>
 
-      {/* Categories */}
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 sm:py-20">
         {categories.map((cat, ci) => {
           const catServices = services.filter((s) => s.category === cat);

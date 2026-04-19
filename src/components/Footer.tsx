@@ -1,5 +1,5 @@
-import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import logo from "@/assets/logo.png";
 
@@ -32,7 +32,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               {services.slice(0, 5).map((s) => (
                 <li key={s.slug}>
-                  <Link to="/services/$slug" params={{ slug: s.slug }} className="text-muted-foreground hover:text-primary">
+                  <Link to={`/services/${s.slug}`} className="text-muted-foreground hover:text-primary">
                     {s.title}
                   </Link>
                 </li>
@@ -60,24 +60,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground space-y-2">
-          <div>© {new Date().getFullYear()} Bone Physiotherapy. All rights reserved.</div>
-          <div className="flex justify-center items-center gap-1">
-            Made with <Heart className="inline h-4 w-4 text-red-500 mx-1" fill="currentColor" /> by
-            <a
-              href="https://staffarc.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-orange-600 hover:underline"
-            >
-              <img
-                src="https://www.staffarc.in/images/Staffarc-logo.png"
-                alt="StaffArc logo"
-                className="h-5 w-5 object-contain"
-              />
-              StaffArc
-            </a>
-          </div>
+        <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground">
+          © {new Date().getFullYear()} Bone Physiotherapy. All rights reserved.
         </div>
       </div>
     </footer>

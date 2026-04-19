@@ -1,51 +1,25 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, Sparkles } from "lucide-react";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ServiceCard } from "@/components/ServiceCard";
-import { getServiceBySlug, services, type Service } from "@/data/services";
+import { getServiceBySlug, services } from "@/data/services";
+import NotFoundPage from "@/pages/NotFound";
 
-export const Route = createFileRoute("/services/$slug")({
-  loader: ({ params }): { service: Service } => {
-    const service = getServiceBySlug(params.slug);
-    if (!service) throw notFound();
-    return { service };
-  },
-  head: ({ loaderData }) => {
-    const s = loaderData?.service;
-    if (!s) return { meta: [{ title: "Service — Bone Physiotherapy" }] };
-    return {
-      meta: [
-        { title: `${s.title} — Bone Physiotherapy` },
-        { name: "description", content: s.shortDescription },
-        { property: "og:title", content: `${s.title} — Bone Physiotherapy` },
-        { property: "og:description", content: s.shortDescription },
-        { property: "og:image", content: s.image },
-        { name: "twitter:image", content: s.image },
-      ],
-    };
-  },
-  notFoundComponent: () => (
-    <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-      <h1 className="font-heading text-3xl font-bold">Service not found</h1>
-      <p className="mt-3 text-muted-foreground">We couldn't find the service you're looking for.</p>
-      <Link
-        to="/services"
-        className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
-      >
-        <ArrowLeft className="h-4 w-4" /> Back to Services
-      </Link>
-    </div>
-  ),
-  component: ServiceDetailPage,
-});
+export default function ServiceDetailPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const service = slug ? getServiceBySlug(slug) : undefined;
 
-function ServiceDetailPage() {
-  const { service } = Route.useLoaderData() as { service: Service };
+  useEffect(() => {
+    document.title = service ? `${service.title} — Bone Physiotherapy` : "Service — Bone Physiotherapy";
+  }, [service]);
+
+  if (!service) return <NotFoundPage />;
+
   const related = services.filter((s) => s.category === service.category && s.slug !== service.slug).slice(0, 3);
 
   return (
     <>
-      {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="relative h-[44vh] min-h-[340px] w-full">
           <img
@@ -69,7 +43,6 @@ function ServiceDetailPage() {
         </div>
       </section>
 
-      {/* Breadcrumb + back */}
       <div className="border-b border-border bg-medical-light/50">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
           <Breadcrumb
@@ -88,7 +61,6 @@ function ServiceDetailPage() {
         </div>
       </div>
 
-      {/* Content */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           <div className="lg:col-span-2 space-y-12">
@@ -139,7 +111,6 @@ function ServiceDetailPage() {
             </div>
           </div>
 
-          {/* Sidebar */}
           <aside className="space-y-6">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
               <h3 className="font-heading text-lg font-bold text-foreground">Quick overview</h3>

@@ -1,21 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import aboutMission from "@/assets/services/about-mission.jpg";
 import aboutTeam from "@/assets/services/about-team.jpg";
 import { CheckCircle2 } from "lucide-react";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Bone Physiotherapy" },
-      { name: "description", content: "Compassionate, evidence-based physiotherapy and orthopaedic care for every stage of recovery." },
-      { property: "og:title", content: "About — Bone Physiotherapy" },
-      { property: "og:description", content: "Meet the team committed to your recovery and long-term wellness." },
-    ],
-  }),
-  component: AboutPage,
-});
+export default function AboutPage() {
+  useEffect(() => {
+    document.title = "About — Bone Physiotherapy";
+  }, []);
 
-function AboutPage() {
   return (
     <>
       <section className="bg-medical-light py-20">

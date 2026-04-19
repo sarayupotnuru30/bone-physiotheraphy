@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import slide1 from "@/assets/services/hero-physio-new.jpg";
 import slide2 from "@/assets/services/sports-rehab.jpg";
