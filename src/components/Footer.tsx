@@ -63,7 +63,7 @@ export function Footer() {
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-muted-foreground space-y-2">
           <div>© {new Date().getFullYear()} Bone Physiotherapy. All rights reserved.</div>
           <div className="flex justify-center items-center gap-1">
-            Made with <Heart className="inline h-4 w-4 text-red-500 mx-1" /> by
+            Made with <Heart className="inline h-4 w-4 text-red-500 mx-1" fill="currentColor" /> by
             <a
               href="https://staffarc.in"
               target="_blank"
