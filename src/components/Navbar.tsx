@@ -17,12 +17,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-lg">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center group" aria-label="Bone Physiotherapy Clinic">
           <img
             src={logo}
             alt="Bone Physiotherapy Clinic logo"
-            className="h-12 w-auto transition-transform group-hover:scale-105"
+            className="h-20 w-auto transition-transform group-hover:scale-105"
           />
         </Link>
 

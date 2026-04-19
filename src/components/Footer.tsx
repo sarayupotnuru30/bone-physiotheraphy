@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-4">
           <div>
             <Link to="/" className="flex items-center" aria-label="Bone Physiotherapy Clinic">
-              <img src={logo} alt="Bone Physiotherapy Clinic logo" className="h-14 w-auto" />
+              <img src={logo} alt="Bone Physiotherapy Clinic logo" className="h-24 w-auto" />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Restoring movement, relieving pain, and helping you live better with expert physiotherapy and orthopaedic care.
